@@ -11,12 +11,22 @@ import static org.junit.jupiter.api.Assertions.*;
 class ReservationTest {
 
     @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3})
+    @ValueSource(ints = {1, 2, 5})
     void shouldCreateReservationWithValidRoomCount(int rooms) {
         Reservation reservation = new Reservation(
                 LocalDate.now(),
                 LocalDate.now().plusDays(1),
                 rooms
+        );
+        assertNotNull(reservation);
+    }
+
+    @Test
+    void shouldAllowSameStartAndEndDateBoundary() {
+        Reservation reservation = new Reservation(
+                LocalDate.now(),
+                LocalDate.now(),
+                1
         );
         assertNotNull(reservation);
     }
