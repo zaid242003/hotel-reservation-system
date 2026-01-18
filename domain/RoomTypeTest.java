@@ -28,4 +28,11 @@ class RoomTypeTest {
         assertThrows(IllegalArgumentException.class,
                 () -> new RoomType("Standard", BigDecimal.valueOf(-1)));
     }
+
+    @Test
+    void intentionallyFailingBoundaryTest() {
+    RoomType type = new RoomType("Standard", java.math.BigDecimal.valueOf(1000));
+    assertEquals("Deluxe", type.getKind()); // WILL FAIL
 }
+}
+
